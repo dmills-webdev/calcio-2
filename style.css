@@ -1,0 +1,120 @@
+/*--------------GENERAL------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+* {
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  grid-auto-rows: auto 1fr auto;
+
+  min-height: 100%;
+
+  font-family: arial, sans-serif;
+
+  color: hsla(133, 35%,15%, 1);
+  background: #76b852;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #8DC26F, #76b852);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #8DC26F, #76b852); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+/*--------------HEADER-------------------------------------------------------*/
+.header {
+  text-align: center;
+}
+
+h1.main-heading {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 8vh;
+  text-shadow: 3px 3px #FFF;
+}
+
+/*---------------BODY--------------------------------------------------------*/
+
+.calc-wrapper {
+  display: grid;
+  grid-template-rows: 2fr repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2px;
+
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  padding: 2px;
+  margin: 10px 0px;
+
+  font-size: 2em;
+
+  background: hsla(88, 100%, 91%, 1);
+  box-shadow: 2px 2px 15px hsla(133, 35%,15%, 1);
+}
+@media all and (min-width: 768px), (orientation: landscape) {
+  .calc-wrapper {
+    max-width: 20%;
+    max-height: 70%;
+  }
+}
+
+.display {
+  font-size: 4vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  grid-column: 1 / 5;
+  background: #FFF;
+  padding-right: 3px;
+}
+
+.operator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(139, 45%, 57%, 1)
+}
+
+.operator:active {
+  background-color: hsla(139, 45%, 40%, 1);
+}
+
+.number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsla(130, 53%, 57%, 0.3);
+}
+
+.number:active {
+  background: hsla(130, 53%, 45%, 0.3);
+}
+
+.equals {
+  grid-row: 5 / 7;
+  grid-column: 4 / 5;
+}
+
+/*--------------FOOTER-------------------------------------------------------*/
+.footer {
+  grid-row-start: 3;
+  grid-row-end: 4;
+  text-align: center;
+  font-size: 0.5em;
+  color: rgba(7, 38, 43, 0.3);
+  padding-bottom: 10px;
+  max-height: 10%;
+}
+
+.github-link {
+  text-decoration: none;
+  color: rgba(7, 38, 43, 0.4);
+}
