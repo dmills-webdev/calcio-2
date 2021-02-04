@@ -11,32 +11,34 @@ function clearStack() {
   updateDisplay()
 }
 
-function updateDisplay() {
-  document.getElementById('display').textContent = stack.join('').replace(/\*/g, 'x')
+function backspace() {
+  stack.pop()
+  updateDisplay()
 }
-
-
 
 function calculate() {
   stack = stack.join('').split(/([+\-*\/])/)
 
-  while (stack.includes('*')) {
-    let i = stack.indexOf('*')
-    stack.splice(i-1, 3, +stack[i-1] * +stack[i+1])
-  }
-  while (stack.includes('/')) {
-    let i = stack.indexOf('/')
-    stack.splice(i-1, 3, +stack[i-1] / +stack[i+1])
-  }
-  while (stack.includes('+')) {
-    let i = stack.indexOf('+')
-    stack.splice(i-1, 3, +stack[i-1] + +stack[i+1])
-  }
-  while (stack.includes('-')) {
-    let i = stack.indexOf('-')
-    stack.splice(i-1, 3, +stack[i-1] - +stack[i+1])
+  let operators = ['*','/','+','-']
+  const operations = {
+    '*' : (a,b) => a*b,
+    '/' : (a,b) => a/b,
+    '+' : (a,b) => a+b,
+    '-' : (a,b) => a-b,
   }
 
-  console.log(stack)
+  while (stack.length>1) {
+    while (stack.includes(operators[0])) {
+      let i = stack.indexOf(operators[0])
+      let sum = Number(operations[operators[0]](+stack[i-1],+stack[i+1]).toFixed(10))
+      stack.splice(i-1, 3, sum)
+    }
+    operators.shift()
+  }
+
   updateDisplay()
+}
+
+function updateDisplay() {
+  document.getElementById('display').textContent = stack.join('').replace(/\*/g, 'x')
 }
