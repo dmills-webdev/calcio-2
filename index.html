@@ -7,41 +7,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="script.js"></script>
+  <script src="calc.js"></script>
 </head>
 
 <body>
   <div class="header">
-    <h1 class="main-heading">Calcio</h1>
+    <h1 class="main-heading">mini-calc</h1>
   </div>
 
   <div class="calc-wrapper">
 
-    <div class="display"></div>
+    <div id="display"></div>
 
     <div class="clear operator" onclick="clearStack()">c</div>
-    <div class="divide operator" onclick="addToStack(&quot;/&quot;)">/</div>
-    <div class="multiply  operator" onclick="addToStack(&quot;x&quot;)">x</div>
+    <div class="divide operator" onclick="addToStack('/')">/</div>
+    <div class="multiply  operator" onclick="addToStack('*')">x</div>
     <div class="backspace  operator" onclick="backspace()">&hookleftarrow;</div>
 
     <div class="seven number" onclick="addToStack(7)">7</div>
     <div class="eight number" onclick="addToStack(8)">8</div>
     <div class="nine number" onclick="addToStack(9)">9</div>
-    <div class="add  operator" onclick="addToStack(&quot;+&quot;)">+</div>
+    <div class="add  operator" onclick="addToStack('+')">+</div>
 
     <div class="four number" onclick="addToStack(4)">4</div>
     <div class="five number" onclick="addToStack(5)">5</div>
     <div class="six number" onclick="addToStack(6)">6</div>
-    <div class="subtract  operator" onclick="addToStack(&quot;-&quot;)">-</div>
+    <div class="subtract  operator" onclick="addToStack('-')">-</div>
 
     <div class="one number" onclick="addToStack(1)">1</div>
     <div class="two number" onclick="addToStack(2)">2</div>
     <div class="three number" onclick="addToStack(3)">3</div>
-    <div class="equals  operator" onclick="operate()">=</div>
+    <div class="equals  operator" onclick="calculate()">=</div>
 
     <div class="blank operator"></div>
     <div class="zero number" onclick="addToStack(0)">0</div>
-    <div class="decimal operator" onclick="addToStack(&quot;.&quot;)">.</div>
+    <div class="decimal operator" onclick="addToStack('.')">.</div>
 
   </div>
 

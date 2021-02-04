@@ -1,2 +1,2 @@
 # calculator
-TheOdinProject Calculator assignment
+Javascript calculator app.
