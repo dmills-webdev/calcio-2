@@ -69,11 +69,20 @@ h1.main-heading {
 #display {
   font-size: 4vh;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex-direction: column;
   grid-column: 1 / 5;
   background: #FFF;
   padding-right: 3px;
+}
+#previous, #current {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  height: 50%;
+}
+#previous {
+  opacity: 0.5;
 }
 
 .operator {

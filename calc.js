@@ -22,16 +22,20 @@ function clearVirtualStack() {
 
 // Remove last keystroke from stack and update display.
 function backspace() {
-  stack.pop()
-  updateDisplay()
+  if (stack.length>0) {
+    stack.pop()
+    updateDisplay()
+  }
 }
 
 // Attempt to perform calculation on stack, reducing it to a single value and update the display.
 function calculate() {
   // Double press of equals sets stack value to result of calculation.
   if (virtualStack.length>0) {
+    updateDisplay('previous')
     stack = [...virtualStack] // Finalise calculation with result of calculation on virtualStack.
     clearVirtualStack()
+    updateDisplay('current')
     return
   }
   // Generate formatted virtual stack.
@@ -57,10 +61,10 @@ function calculate() {
     operators.shift() // Move onto next operator once all operations needed with current operator have been handled.
   }
   // Update display with result of calculation on virtual stack.
-  updateDisplay(virtualStack)
+  updateDisplay('previous', virtualStack)
 }
 
 // Update the calculator visual display with whatever is supplied OR presentable version of the current stack.
-function updateDisplay(supplied) {
-  document.getElementById('display').textContent = supplied || stack.join('').replace(/\*/g, 'x') // Replace * with x for readability.
+function updateDisplay(section, toDisplay) {
+  document.getElementById(section || 'current').textContent = toDisplay || stack.join('').replace(/\*/g, 'x') // Default to (current,stack) Replace * with x for readability.
 }
