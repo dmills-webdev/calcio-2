@@ -15,6 +15,13 @@ function clearStack() {
   updateDisplay()
 }
 
+// Reset both displays and stacks.
+function reset() {
+  clearVirtualStack()
+  updateDisplay('previous', virtualStack)
+  clearStack()
+}
+
 // Clears virtual stack entirely.
 function clearVirtualStack() {
   virtualStack.length = 0
@@ -32,7 +39,7 @@ function backspace() {
 function calculate() {
   // Double press of equals sets stack value to result of calculation.
   if (virtualStack.length>0) {
-    updateDisplay('previous')
+    updateDisplay('previous', [...stack, '=', ...virtualStack]) // Display full calculation in previous display.
     stack = [...virtualStack] // Finalise calculation with result of calculation on virtualStack.
     clearVirtualStack()
     updateDisplay('current')
@@ -53,7 +60,6 @@ function calculate() {
   }
   while (virtualStack.length>1) { // Calculation is finished when length is reduced to one.
     while (virtualStack.includes(operators[0])) { // Perform calculations progressively, in line with order of operations.
-      console.log(virtualStack)
       let i = virtualStack.indexOf(operators[0]) // Index of current operator.
       let result = Number(operations[operators[0]](+virtualStack[i-1],+virtualStack[i+1]).toFixed(8)) // Result of subcalculation. toFixed to address floating point decimal oddities. Number to clear trailing zeros.
       virtualStack.splice(i-1, 3, result) // Reduce 2 operands and 1 operator, leaving result of the subcalculation.
@@ -66,5 +72,5 @@ function calculate() {
 
 // Update the calculator visual display with whatever is supplied OR presentable version of the current stack.
 function updateDisplay(section, toDisplay) {
-  document.getElementById(section || 'current').textContent = toDisplay || stack.join('').replace(/\*/g, 'x') // Default to (current,stack) Replace * with x for readability.
+  document.getElementById(section || 'current').textContent = (toDisplay || stack).join('').replace(/\*/g, 'x') // Default fallback to (current,stack) Replace * with x for readability.
 }
